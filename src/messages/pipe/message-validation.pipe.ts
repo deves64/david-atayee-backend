@@ -18,9 +18,9 @@ export class MessageValidationPipe implements PipeTransform<any> {
             }),
         };
 
-        const result = Joi.validate(value, schema, {abortEarly: false, stripUnknown: true});
+        const result = Joi.validate(value, schema, { abortEarly: false, stripUnknown: true });
 
-        if (result.error !== null) {
+        if (result.error != null) {
             throw new HttpException(result, 400);
         }
 
