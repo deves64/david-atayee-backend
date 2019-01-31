@@ -1,0 +1,46 @@
+type Message {
+    id: String
+    createdAt: Date
+    updatedAt: Date
+    entityVersion: Int
+    subject: String
+    message: String
+    sender: Sender
+}
+
+type Sender {
+    id: String
+    createdAt: Date
+    updatedAt: Date
+    entityVersion: Int
+    firstName: String
+    lastName: String
+    company: String
+    email: String
+    messages: [Message]
+}
+
+input CreateMessageInput {
+    subject: String
+    message: String
+    sender: CreateSenderInput
+}
+
+input CreateSenderInput {
+    firstName: String
+    lastName: String
+    company: String
+    email: String
+}
+
+type Mutation {
+    createMessage(createMessageInput: CreateMessageInput): Message
+}
+
+type Query {
+    getMessage(id: String!): Message
+    getAllMessages: [Message]
+}
+
+scalar Date
+
